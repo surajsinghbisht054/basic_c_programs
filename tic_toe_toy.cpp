@@ -12,14 +12,13 @@ __Github__ = https://github.com/surajsinghbisht054
 
 
 ####################################################################
-#          Terminal : TIC TOE TOY Game                            # 
+#          Terminal : TIC TOE TOY Game                            #
 ####################################################################
 */
 
 
 // Get Current Status Of board
 void printboard(){
-
     printf("\n\
      |     |      \n\
   %c  |  %c  | %c    \n\
@@ -34,6 +33,7 @@ void printboard(){
         ",b[1],b[2],b[3],b[4],b[5],b[6],b[7],b[8],b[9] );
 
 }
+
 
 
 // Check Second Player Win
@@ -89,7 +89,7 @@ bool check_first_win(){
 bool check_tie(){
     if ((b[0]!='.')&&(b[1]!='.')&&(b[2]!='.')&&(b[3]!='.')&&(b[4]!='.')&&(b[5]!='.')&&(b[6]!='.')&&(b[7]!='.')&&(b[8]!='.')&&(b[9]!='.')){
         return true;
-    }  
+    }
     else{
         return false;
     }
@@ -147,6 +147,6 @@ main(){
         }
         //win++;
     };
-    
+
     }
 
