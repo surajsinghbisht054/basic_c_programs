@@ -19,6 +19,8 @@ __Github__ = https://github.com/surajsinghbisht054
 */
 
 
+
+
 /// Bool Function to find Operator
 bool isoperator(char str){
 
@@ -45,9 +47,10 @@ int evaluate(const string s){
 
     /// Infix
     string infix="";
+    string b_infix = "";
 
     /// Length Of String
-    int len = s.size();
+    int len = s.size(), brk=0;
 
     /// Char
     char a;
@@ -58,28 +61,66 @@ int evaluate(const string s){
         /// Access Value
         a = s[len-1];
 
-        cout << "[+] In Loop : " <<a << endl;
+        //cout << "[+] In Loop : " <<a << endl;
+        if((a=='-')&&(len==1)){
+        infix = a + infix;
 
-        if ((a==' ')||(a==',')){
-            cout << "[-] Space Found : Escaped "<<endl;
+        }
+        else if ((a==' ')||(a==',')){
+            //cout << "[-] Space Found : Escaped "<<endl;
             continue;
         }
-        else if(isoperator(a)){
-            cout << "[+] Operator Found " << a << endl;
+        else if(isoperator(a)&& (brk==0)){
+            //cout << "[+] Operator Found " << a << endl;
             postfix=postfix+a;
-            cout << "[+] Postfix Status " << postfix<< endl;
+            //cout << "[+] Postfix Status " << postfix<< endl;
             int d = atoi(infix.c_str());// -'0'
-            cout << "[+] Add to Stack " << d << endl;
+            //cout << "[+] Add to Stack " << d << endl;
+            if (d){
             S.push(d);
+            }
             infix = "";
 
 
-        }else{
+        }
+        else if (a==')'){
+            brk = brk + 1 ;
+            if (brk>1){
+                b_infix = a+b_infix ;
+            }
+            //cout << "[+] Open Bracket Found " << endl;
+
+        }
+        else if ((brk>0)&&(a!='(')){
+            //cout << "[+] Bracket value " << a << endl;
+            b_infix = a+b_infix ;
+
+        }
+        else if(a=='('){
+            brk = brk - 1;
+            //cout << "[+] Close Bracket Found " << a << endl;
+            if (brk==0){
+                cout << "[-] Evaluating : "<< b_infix << endl;
+                int d = evaluate(b_infix.c_str());
+                //cout << "[+] Add to Stack " << d << endl;
+                //cout << d << endl;
+                S.push(d);
+                b_infix = "";
+                infix = "";
+
+            }else{
+            //cout << a << brk << endl;
+            b_infix = a+b_infix ;
+
+            }
+
+        }
+        else{
 
         /// Add Value Into Infix
-        infix = infix + a;
+        infix = a + infix;
 
-        cout << "[+] Add Infix Status " << infix<< endl;
+        //cout << "[+] Add Infix Status " << infix<< endl;
 
         }
 
@@ -90,13 +131,15 @@ int evaluate(const string s){
 
         if (infix.c_str()){
             int d = atoi(infix.c_str());// -'0'
-            cout << "[+] Add to Stack " << d << endl;
+            if (d){
+            // cout << "[+] 1 Add to Stack " << d << endl;
             //cout << d << endl;
             S.push(d);
+            }
             infix = "";
         }
 
-
+    //cout << "Status Of Infix : " << postfix << endl;
     /// Now, Our Numeric Values Are Available On Stack And Operator On String
 
     // Declear Interger
@@ -111,31 +154,39 @@ int evaluate(const string s){
     /// Get Top Value
     ia = S.top();
     S.pop();
+    //cout << "Default Stack Value "<< ia << endl;
 
     for(i; i>0; i--){
         //cout <<postfix[i-1]<<endl;
         ib = S.top();
         S.pop();
-
+        //cout << "Second Default Stack Value "<< ib << endl;
         //cout << "  "<< ia << " " << ib << endl;
 
 
         if (postfix[i-1]=='+'){
                 ia = ia + ib;
 
-        }else if (postfix[i-1]=='-'){
+
+        }
+        else if (postfix[i-1]=='-'){
                 ia = ia - ib;
 
-        }else if (postfix[i-1]=='*'){
+        }
+        else if (postfix[i-1]=='*'){
                 ia = ia * ib;
 
-        }else if (postfix[i-1]=='/'){
+        }
+        else if (postfix[i-1]=='/'){
                 ia = ia / ib;
+        }
+        else{
+        //cout << postfix[i-1] <<endl;
         }
             }
 
 
-        //cout << " Answer  "<< ia << " Remander : " << ib << endl;
+    cout << " [+]  And Evaluating Equation Answer is "<< ia << endl;
     //cout << S.pop() << endl;
     return ia;
 
@@ -154,7 +205,16 @@ main(){
             +   Github : github.com/surajsinghbisht054   +\n\
             ++++++++++++++++++++++++++++++++++++++++++++++\n\
             \n\
-            This Version Only Supports :  +, -, *, /  \n\
+            This Version Only Supports All Operators With Signs  \n\
+                   My tested Equation : \n\
+                                    \n\
+                          =  1-2\n\
+                          =  (1+2)\n\
+                          =  (1-2)+(1+2)\n\
+                          =  (1-2)*6\n\
+                          =  ((((5+2)*(7-1))-7) - (5*2))\n\
+                          =  2*(5+6)          \n\
+                          \n\
     ###################################################################\n\
     " << endl;
 
@@ -164,11 +224,17 @@ main(){
     /// Get Complete line as string
     getline(cin, in);
 
+    //in = "-1-2";
+    //in = "((((5+2)*(7-1))-7) - (5*2))";
+    // in = "2*(5+6)";
+    if (in.size()==0){
+    in = "((((5+2)*(7-1))-7) - (5*2))";
 
+    }
     int n;
     n = evaluate(in);
-
-    cout << "\n\n\n[-] Your Answer is : "<< n << endl;
+    cout << "\n\n\n\n\n[+] Your Expression : " << in <<endl;
+    cout << "\n\n\n[-] Your Final Answer is : "<< n << endl;
 
 
 
