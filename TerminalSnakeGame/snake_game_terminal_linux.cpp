@@ -17,6 +17,16 @@ __Github__ = https://github.com/surajsinghbisht054
 */
 
 
+///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+///                       Testing Configuration
+///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+///
+/// Operating System:   Linux 4.4.0-109-generic #132-Ubuntu, x86_64 GNU/Linux
+/// Editor			:	Code::Blocks 13.12
+/// Compiler		:	g++ (Ubuntu 5.4.0-6ubuntu1~16.04.5) 5.4.0 20160609
+/// Blog 			:	www.bitforestinfo.com
+///
+///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 /// ++++++++++++++++++++ [ Configuration Panel] +++++++++++++++++++++++++++++++++{
@@ -299,6 +309,7 @@ void capture_food(void){
             background[y][x]=0;
             food[0]=0;
             score++;
+            snakelen++;
             cook_food();
 
         }
