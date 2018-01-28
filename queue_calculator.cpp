@@ -13,9 +13,6 @@ __email__  = surajsinghbisht054@gmail.com
 __Github__ = https://github.com/surajsinghbisht054
 
 
-####################################################################
-#          Find Correct Weekday From Exact Date                    #
-####################################################################
 */
 
 
