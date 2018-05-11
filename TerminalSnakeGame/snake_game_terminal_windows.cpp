@@ -18,10 +18,10 @@ __Github__ = https://github.com/surajsinghbisht054
 ///                       Testing Configuration
 ///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ///
-/// Operating System:	Windows 7 Ultimate 32-Bit 
-/// Editor			:	Dev C++ 5.11
-/// Compiler		:	TDM-GCC 4.9.2 32-Bit Release
-/// Blog 			:	www.bitforestinfo.com
+/// Operating System:    Windows 7 Ultimate 32-Bit 
+/// Editor          :    Dev C++ 5.11
+/// Compiler        :    TDM-GCC 4.9.2 32-Bit Release
+/// Blog            :    www.bitforestinfo.com
 ///
 ///++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -33,18 +33,18 @@ __Github__ = https://github.com/surajsinghbisht054
 const int width = 50;                      // Boundary Width
 const int height= 25;                      // Boundary Height
 const char block='#';                      // Block Char
-const char* clearcommand = "clr";        // Teminal Command (Linux: clear | Windows : clr )
+const char* clearcommand = "clr";          // Teminal Command (Linux: clear | Windows : clr )
 
 
 /// global arrays for Data Records
 int background[height][width];   /// Background Array
-int snake[50][2];               /// Maximum Snake Length
-int food[2]={0,0};              /// Snake Food Array
-int score = 0;                  /// Score
-int snakelen = 3;               /// Snake Starting Length
-int snakemovementspeedx = 1;    /// Horizontal Speed
-int snakemovementspeedy = 1;    /// Vertical Speed
-int lap=400;                    /// Waiting Time Betweeen Frames
+int snake[50][2];                /// Maximum Snake Length
+int food[2]={0,0};               /// Snake Food Array
+int score = 0;                   /// Score
+int snakelen = 3;                /// Snake Starting Length
+int snakemovementspeedx = 1;     /// Horizontal Speed
+int snakemovementspeedy = 1;     /// Vertical Speed
+int lap=400;                      /// Waiting Time Betweeen Frames
 
 /// ++++++++++++++++++++ [ Configuration Panel] END +++++++++++++++++++++++++++++++++}
 
@@ -57,19 +57,8 @@ int px,py,nx, ny;
 char k;
 int h,w;
 int x,y;
-int movementx=snakemovementspeedx;                /// Snake Movement
-int movementy=0;                /// Snake Movement
-
-
-/*
-Reference Links:
-        https://www.quora.com/With-which-function-can-I-replace-kbhit-in-C++-because-the-header-conio-h-doesnt-exist-in-linux
-
-Ubuntu Users:
-    sudo apt-get install libncurses5-dev libncursesw5-dev
-*/
-
-
+int movementx=snakemovementspeedx;       /// Snake Movement
+int movementy=0;                        /// Snake Movement
 
 
 
