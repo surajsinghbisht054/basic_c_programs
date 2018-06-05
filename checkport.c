@@ -24,7 +24,7 @@
 #include <arpa/inet.h> //
 #include <unistd.h>
 
-#define PORT_EXPRESSION_ITER 6
+#define PORT_EXPRESSION_ITER 11
 
 
 // Error Report On Screen
@@ -155,7 +155,10 @@ void portscanner(plist *p, char *ip){
         p = tmp;
 
    }
-
+        printf("Scanning IP :%s | Port : %i ---> ", ip, p->data);
+        checkport(sockd, victim, p->data, ip, p);
+        tmp = p->next;
+        p = tmp;
 
    close(sockd);
 
@@ -199,7 +202,9 @@ void ranger(char *exp, plist *p){
     // check range
     if (sn >= en)
     {
-        error("Incorrect Range Found");
+    //printf("Starting From : %s, End at : %s\n",s,e);
+               //printf("Starting From : %i, End at : %i\n",sn,en);
+;        error("Incorrect Range Found");
     }
     
     for (i = sn; i < en; i++)
@@ -259,7 +264,7 @@ void argument_parse(char *ip, char *port){
             {
                 bzero(pnum, sizeof(pnum));
                 pnum[pn] = c;   // string starting
-                pnum[6] = '\0'; // string end
+                pnum[PORT_EXPRESSION_ITER] = '\0'; // string end
                 pn++;
             }
 
@@ -281,16 +286,9 @@ void argument_parse(char *ip, char *port){
                 pn = 0;
                 bzero(pnum, sizeof(pnum));
             }
-            // 
-            else if (pn < 5)
-            {
-                
-                pnum[pn] = c;
-                pn++;
-            
-            }
+           
 
-            else if (pn == 5)
+            else if ((pn == 5)&(!strpbrk(pnum, "-")))
             {
                 
                 // check if range expression
@@ -309,8 +307,22 @@ void argument_parse(char *ip, char *port){
                 pn = 0;
                 bzero(pnum, sizeof(pnum));
                 pnum[pn] = c;   // string starting
-                pnum[6] = '\0'; // string end
+                pnum[PORT_EXPRESSION_ITER] = '\0'; // string end
                 pn++;
+            }
+            else if (pn < 5)
+            {
+                
+                pnum[pn] = c;
+                pn++;
+            
+            }
+            else if (strpbrk(pnum, "-"))
+            {
+                
+                pnum[pn] = c;
+                pn++;
+            
             }
             else
             {
@@ -320,7 +332,7 @@ void argument_parse(char *ip, char *port){
         }
         else
         {
-            printf("%s", c);
+            //printf("%s", c);
             error("Please Provide Valid Port Range Expressions");
         }
     }
